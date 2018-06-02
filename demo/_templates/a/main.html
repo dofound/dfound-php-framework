@@ -1,0 +1,192 @@
+<div id="content-wrapper">
+	<div id="container">
+		<div id="flash-messages"></div>
+		<div id="content">
+			<div class="module">
+				<div class="con-padding">
+					<h1>Welcome to DoFound Framework.</h1>
+					<br />
+				</div>
+				<div class="pcolor">
+					<strong>一些具体例子:</strong>
+					<ul>
+						<li>生成URL:<a href="<?php echo $this->getUrl('index/test/ab/1/cd/2');?>"><?php echo $this->getUrl('index/test/ab/1/cd/2');?></a><br /><?php print_r($data);?></li>
+						<li></li>
+					</ul>
+				</div>
+				<!-- code -->
+				<div class="tcodes">
+					获得外部变量，文件路径：<strong>./_system/_base/request.class.php</strong>
+					<div class="codecolor"><pre>
+$name = DF::app()->request->get('name');	//get 获得
+$name = DF::app()->request->post('name');	//post 获得
+$name = DF::app()->request->params('name');	// 先get,再post
+<span class="color">调用方法：DF::app()->request->params('xxx')</span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					如何配置MYSQL数据库,配置文件路径：
+					<strong>./system/_config/config.class.php</strong>
+					<div class="codecolor"><pre>
+'database'=>array(
+	'db' => array(
+		'dns'=>'mysql:dbname=test;host=localhost;port=3306',	// mysql pdo
+		'user'=>'root',	//用户名
+		'pass'=>'123456',	//密码
+		'chartset'=>'utf8',	//编码
+		'uniqid'=>'db',	//唯一KEY
+	),
+	...
+),
+<span class="color">调用数据库：某表user_comment,对其操作，需要先生成model 和 data文件，然后在controller里进行调用
+
+首先：在demo下生成data文件./demo/_data/comment.class.php，内容如下：
+<span class="bcolor">class data_comment extends base_Dbase
+{
+	public function __construct( $db_key ) {
+		parent::__construct( $db_key );
+		$this->_table = $this->_table_prefix.'<span class="color">user_comment</span>';	//修改表名
+	}
+}
+</span>接着：在demo下生成model文件./demo/_model/comment.class.php，内容如下：
+<span class="bcolor">class model_comment extends base_Mbase
+{
+	private static $db;
+	public function __construct( $db_key = '<span class="color">db</span>' ) {		//这里值对配置文件的KEY一致即
+		if (empty(self::$db))
+			self::$db = <span class="color">new data_comment($db_key)</span>;	//这里调用data对象
+		parent::__construct( self::$db );
+	}
+}
+</span>最后：在demo下生成文件./demo/_controller/comment.class.php，内容如下：
+<span class="bcolor">class controller_index extends base_controller
+{
+	private $model_comment;
+	private $model_reg;
+	<span class="color">private $layout = 'main';</span>	//这里设置使用哪个layout 就是模板框架
+	public function __construct() {
+		parent::__construct();
+		$this->model_reg = new model_reg();
+		$this->model_comment = new model_comment();
+	}
+	/*--home--*/
+	public function index() {
+		$data = array(1,2,3,4);
+		$this->pageTitle = 'Welcome to DoFound PHP Framework.';
+		$this->setTpl( 'main',compact('data') );
+	}
+	/*--test--*/
+	public function test() {
+		echo DF::app()->request->get('ab');echo '_';
+		echo DF::app()->request->get('cd');
+	}
+	public function getuser() {
+		$uid = DF::app()->request->get('uid');
+		$info = $this->model_reg->get_record_one("`id`='{$uid}'");
+		print_r($info);
+	}
+	public function getcomment() {
+		$id = DF::app()->request->get('id');
+		$info = $this->model_comment->get_record_id($id);
+		print_r($info);
+	}
+	...
+}</span></span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					打开memcache,配置文件路径：
+					<strong>./system/_config/config.class.php</strong>
+					<div class="codecolor"><pre>
+'memcache' => array(
+	array('127.0.0.1',11211,100),	//主机IP，端口，权重
+),
+<span class="color">调用方法：DF::app()->memCache
+DF::app()->memCache->add('name','dofound');
+DF::app()->memCache->get('name');
+...</span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					打开redis,配置文件路径：
+					<strong>./system/_config/config.class.php</strong>
+					<div class="codecolor"><pre>
+'redis' => array(
+	array('127.0.0.1',6379), //主机IP，端口
+), 
+<span class="color">调用方法：DF::app()->redis
+DF::app()->redis->incr('key');
+DF::app()->redis->get('key');
+...</span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					设置rewrite：
+					<strong>./index.php</strong>
+					<div class="codecolor"><pre>
+* for example:
+* 0:http://www.dofound.net/?mod=index&act=test&ab=1
+* 2:http://www.dofound.net/index/test/ab/1
+* 1:http://www.dofound.net/index/test?ab=1
+*/
+<span class="color">define('_ROUTE', 2);</span>
+
+另需要在 ./index.php 同目录下创建一个文件.htaccess 内容如下：<span class="bcolor">
+RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|_appdata|resources|images|robots\.txt)
+RewriteRule ^/?(.*)$ /index.php/$1 [L]</span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					[ fun_ 扩展 ] 把自己的类加入到系统，放在这个目录里
+					<strong>./_system/_function/</strong>
+					<div class="codecolor"><pre>
+<span class="color">扩展方式：类名以‘fun_’开头,如:fun_name,文件名需是name.class.php 内容如下：
+<span class="bcolor">class fun_name
+{
+	static public function get() {
+		...
+	}
+}</span></span>
+</pre>
+					</div>
+				</div>
+				<!-- end code -->
+				<!-- code -->
+				<div class="tcodes">
+					[ lib_ 扩展 ] 把自己的类加入到系统，放在这个目录里
+					<strong>./_system/_library/</strong>
+					<div class="codecolor"><pre>
+<span class="color">扩展方式：类名以‘lib_’开头,如:lib_name,文件名需是name.class.php 内容如下：
+<span class="bcolor">class lib_name
+{
+	static public function get() {
+		...
+	}
+}</span></span>
+</pre>
+					</div>
+				<span class="color">欢迎测试Dofound PHP Framework.请提意见。mail:dofound@163.com author:复活节</span>
+				</div>
+				<!-- end code -->
+			</div>			
+		</div>
+	</div>
+</div>

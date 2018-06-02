@@ -1,0 +1,157 @@
+html, body, div, span, applet, object, iframe, h1, .science-modal.ui-dialog .ui-dialog-titlebar .ui-dialog-title, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    font-family: inherit;
+    font-size: 100%;
+	list-style: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+html {
+    background: none repeat scroll 0 0 #B2DFF5;
+}
+body {
+    background: none repeat scroll 0 0 transparent;
+    color: #000C11;
+    font-family: lucida grande,lucida sans unicode,helvetica,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+#header-wrapper {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #8BB8D2;
+}
+#header #dofound-logo {
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    top: -4px;
+}
+#content-wrapper {
+    background: none repeat scroll 0 0 transparent;
+	clear:both;
+}
+#header {
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 15px 0 8px;
+    width: 990px;
+}
+#container {
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 0;
+    width: 990px;
+}
+#content {
+    display: inline;
+    float: left;
+    margin-right: 0;
+    width: 990px;
+}
+#footer-wrapper {
+    background: none repeat scroll 0 0 transparent;
+	clear:both;
+}
+.module {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #8BB8D2;
+    border-radius: 5px 5px 5px 5px;
+}
+.con-padding {
+	margin-bottom: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.dofound-button, .dofound-button.small {
+    font-size: 14px;
+    line-height: 19px;
+    padding: 10px 15px;
+	background: #3FB745;
+}
+.dofound-button, .dofound-button.green {
+    background: linear-gradient(#3FB745 50%, #149E3D) repeat scroll 0 0 transparent;
+    border: 1px solid #41862A;
+    box-shadow: 0 2px 1px -1px #4CC955 inset;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+.dofound-button:hover, .dofound-button.green:hover {
+	background: #34A139;
+    background: linear-gradient(#34A139 50%, #41862A) repeat scroll 0 0 transparent;
+}
+.dofound-button {
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    margin: 0;
+    outline: 0 none;
+    text-decoration: none !important;
+    white-space: normal;
+}
+#visitor-nav .dofound-button {
+    margin-top: 0;
+}
+.dofound-button, .dofound-button.small {
+    font-size: 14px;
+    line-height: 19px;
+    padding: 10px 15px;
+}
+h1, .science-modal.ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+    color: #EB7A24;
+    font-family: Trebuchet MS,arial,sans-serif;
+    font-size: 2.3em;
+}
+#footer {
+    margin: 0 auto 20px;
+    overflow: hidden;
+    width: 990px;
+	color: #485B6A;
+}
+#footer ul {
+    padding: 0 10px;
+	list-style-type: disc;
+}
+#footer ul li {
+    display: inline-block;
+	float:left;
+	margin: 0 20px 0 0;
+}
+.pcolor{
+    background-color: #EDF4F7;
+    border-bottom: 1px solid #D6E3E8;
+    border-top: 1px solid #D6E3E8;
+    padding: 20px;
+}
+.pcolor ul{
+	padding-left:25px;
+}
+.tcodes{
+	margin:20px 20px 20px 20px;
+    padding: 10px;
+}
+.codecolor{
+    background-color: #EDF4F7;
+    border: 1px solid #D6E3E8;
+	padding: 5px;
+}
+.psmall{
+	font-size:9px;
+}
+a, a:link, a:visited, a:hover {
+    color: #2181A9;
+    text-decoration: none;
+}
+#visitor-nav {
+    color: #999999;
+    font-size: 14px;
+    margin-top: 0;
+    text-align: right;
+}
+.color {
+	color:#EB7A24;
+	font-weight:bold;
+}
+.bcolor {
+	color:#149E3D;
+}

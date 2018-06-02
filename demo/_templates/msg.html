@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+
+<body>
+<script type="text/javascript">
+<!--{if $msg != ''}-->
+	alert('<!--{$msg}-->');
+<!--{/if}-->
+go_url = "<!--{$go_url}-->";
+if (go_url ==''){
+	setTimeout("history.back()",1000);
+}else{
+	location.href=go_url;
+}
+</script>
+</body>
+</html>
