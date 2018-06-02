@@ -31,7 +31,7 @@ define('_SYSTEM','_system');
 /**
 * @value:application_folder
 */
-define('_APP_FOLDER','mysite');
+define('_APP_FOLDER','demo');
 
 /**
 * @value:current file path
